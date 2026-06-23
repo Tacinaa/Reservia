@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
@@ -222,7 +223,7 @@ export default async function ReservationsPage() {
                 }}
               >
                 {reservation.destination.image ? (
-                  <img
+                  <Image
                     src={reservation.destination.image}
                     alt={reservation.destination.name}
                     width={900}

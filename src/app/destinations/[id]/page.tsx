@@ -1,5 +1,8 @@
+import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 import ReservationForm from "@/components/ReservationForm";
+
+export const revalidate = 60;
 
 type PageProps = {
   params: Promise<{
@@ -91,11 +94,12 @@ export default async function DestinationDetailPage({ params }: PageProps) {
         >
           <div>
             {mainImage ? (
-              <img
+              <Image
                 src={mainImage}
                 alt={destination.name}
                 width={1400}
                 height={900}
+                priority
                 style={{
                   width: "100%",
                   height: "560px",
@@ -126,13 +130,12 @@ export default async function DestinationDetailPage({ params }: PageProps) {
                 }}
               >
                 {cleanedGallery.slice(0, 3).map((imageUrl, index) => (
-                  <img
+                  <Image
                     key={`${destination.id}-gallery-${index}`}
                     src={imageUrl}
                     alt={`${destination.name} - vue ${index + 1}`}
                     width={500}
                     height={350}
-                    loading="lazy"
                     style={{
                       width: "100%",
                       height: "140px",

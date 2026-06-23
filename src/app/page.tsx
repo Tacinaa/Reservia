@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
@@ -160,11 +161,12 @@ export default async function HomePage() {
                 filter: "blur(10px)",
               }}
             />
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80"
               alt="Paysage de voyage"
               width={1400}
               height={1000}
+              priority
               style={{
                 width: "100%",
                 height: "min(72vh, 720px)",
@@ -256,7 +258,7 @@ export default async function HomePage() {
                 }}
               >
                 {destination.image ? (
-                  <img
+                  <Image
                     src={destination.image}
                     alt={destination.name}
                     width={800}
